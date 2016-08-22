@@ -5,6 +5,8 @@
  */
 package Interfaz;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author sony
@@ -50,16 +52,30 @@ public class Principal9 extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Monotype Corsiva", 2, 18)); // NOI18N
         jLabel2.setText("Monto Inicial");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 100, -1));
+
+        txtMinicial.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMinicialKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtMinicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 80, 30));
 
         jLabel3.setFont(new java.awt.Font("Monotype Corsiva", 2, 18)); // NOI18N
         jLabel3.setText("Monto Final");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 90, -1));
+
+        txtMfinal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMfinalKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtMfinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, 80, 30));
 
         jLabel4.setFont(new java.awt.Font("Monotype Corsiva", 2, 18)); // NOI18N
         jLabel4.setText("Costo De La Llamada");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 150, -1));
+
+        txtCosto.setEditable(false);
         jPanel1.add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 80, 30));
 
         cmdCalcular.setText("Calcular");
@@ -103,6 +119,20 @@ public class Principal9 extends javax.swing.JFrame {
     String costo;
     int minicial,mfinal,consumo,recarga,total;
     
+    if(txtMinicial.getText().isEmpty()){
+     getToolkit().beep();
+     JOptionPane.showMessageDialog(this, "Digite El Monto Inicial","Error",JOptionPane.ERROR_MESSAGE);
+     txtMinicial.requestFocusInWindow();
+     }
+     
+     else if (txtMfinal.getText().trim().isEmpty()){
+     getToolkit().beep();    
+     JOptionPane.showMessageDialog(this, "Digite El Monto Final","Error",JOptionPane.ERROR_MESSAGE);
+     txtMfinal.requestFocusInWindow();
+     }
+    
+     else{
+         
     minicial= Integer.parseInt(txtMinicial.getText());
     mfinal= Integer.parseInt(txtMfinal.getText());
     
@@ -112,8 +142,25 @@ public class Principal9 extends javax.swing.JFrame {
         
     costo= String.valueOf(total);
     txtCosto.setText(costo);
-           
+     
+     } 
     }//GEN-LAST:event_cmdCalcularActionPerformed
+
+    private void txtMinicialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMinicialKeyTyped
+     char c=evt.getKeyChar(); 
+     if(!Character.isDigit(c)) { 
+              getToolkit().beep();  
+              evt.consume();
+          }    
+    }//GEN-LAST:event_txtMinicialKeyTyped
+
+    private void txtMfinalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMfinalKeyTyped
+       char c=evt.getKeyChar(); 
+     if(!Character.isDigit(c)) { 
+              getToolkit().beep();  
+              evt.consume();
+          } 
+    }//GEN-LAST:event_txtMfinalKeyTyped
 
     /**
      * @param args the command line arguments
