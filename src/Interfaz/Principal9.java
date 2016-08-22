@@ -63,6 +63,11 @@ public class Principal9 extends javax.swing.JFrame {
         jPanel1.add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 80, 30));
 
         cmdCalcular.setText("Calcular");
+        cmdCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCalcularActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmdCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, -1, -1));
 
         cmdBorrar.setText("Borrar");
@@ -88,8 +93,27 @@ public class Principal9 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
-        // TODO add your handling code here:
+     txtMinicial.setText("");
+     txtMfinal.setText("");
+     txtCosto.setText("");
+     txtMinicial.requestFocusInWindow();
     }//GEN-LAST:event_cmdBorrarActionPerformed
+
+    private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
+    String costo;
+    int minicial,mfinal,consumo,recarga,total;
+    
+    minicial= Integer.parseInt(txtMinicial.getText());
+    mfinal= Integer.parseInt(txtMfinal.getText());
+    
+    consumo= minicial-mfinal;
+    recarga= (consumo*20)/100;
+    total= consumo+recarga;
+        
+    costo= String.valueOf(total);
+    txtCosto.setText(costo);
+           
+    }//GEN-LAST:event_cmdCalcularActionPerformed
 
     /**
      * @param args the command line arguments
